@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
-public interface CoffeeMachineInterface
+//интерфейс классов вывода для нашего автомата
+interface CoffeeMachineInterface
 {
 	public string getInterfaceInfo();
 	public void createUserInterfaceInfo(int bank, int countSugar, int countMilk, string selectCoffee);
-	public void createMachineInterfaceInfo(ContextCoffeeMachine data);
+	public void CreateMachineInterfaceInfo(ContextCoffeeMachine data);
 	public void createInfo();
 	public void createInfo(String str);
 	public void switchUserHelp();

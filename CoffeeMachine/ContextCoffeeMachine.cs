@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
+//класс для хранения данных из модели
 class ContextCoffeeMachine
 {
 	public List<Resource> resources;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
+//Класс обработчик консольного ввода команд, принимает команду и дёргает соответствующий метод автомата
 class CoffeeMachineConsoleInput
 {
 	private CoffeeMachine machine;
@@ -20,7 +21,7 @@ class CoffeeMachineConsoleInput
 		bool changingContext = false;
 		if (interString!=null)
 		{
-			machine.setInterfaseHelp(string.Empty);
+			machine.setInterfaceInfo(string.Empty);
 			String[] inter = interString.ToLower().Split();
 
 			int count = 0;

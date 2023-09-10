@@ -1,5 +1,5 @@
 using appCoffeeMachine;
-
+// ласс модульного тестировани€ класса табул€ции
 namespace UnitTestAppCoffeeMachine
 {
 	public class TabulationTest

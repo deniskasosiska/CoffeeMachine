@@ -1,6 +1,6 @@
 ﻿namespace appCoffeeMachine;
-
-public class Tabulation
+//Класс создания табуляции для вывода информации в консоль
+public static class Tabulation
 {
 	public static String whiteSpace(String str, int count)
 	{

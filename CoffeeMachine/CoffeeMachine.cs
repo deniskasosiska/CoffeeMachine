@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
+
+//Класс представляешь логику работы автомата
 class CoffeeMachine
 {
 	private ContextCoffeeMachine context;
@@ -16,38 +18,44 @@ class CoffeeMachine
 	private int countMilk = 3;
 	private string selectCoffee = string.Empty;
 	private CoffeeMachineInterface Interface;
-
+	//инициализация
 	public CoffeeMachine(ContextCoffeeMachine context, CoffeeMachineInterface Interface)
 	{
 		this.context = context;
 		this.Interface = Interface;
 		CI();
 	}
+	//возвращает состояние питания автомата
 	public bool getPower()
 	{
 		return power;
 	}
-
+	//возвращает интерфейс автомата
 	public string getInterface()
 	{
 		return Interface.getInterfaceInfo();
 	}
-	public void setInterfaseHelp(string str)
+	//Бередает текст информационного собщения в интерфейс
+	public void setInterfaceInfo(string str)
 	{
 		Interface.createInfo(str);
 	}
+	//Включает выключает вывод подсказки с командами пользователя
 	public void switchHelp()
 	{
 		Interface.switchUserHelp();
 	}
+	//Включает выключает вывод подсказки с сервисными командами
 	public void switchServiseHelp()
 	{
 		Interface.switchServiceHelp();
 	}
+	//Выключает автомат
 	public void switchOff()
 	{
-		power = !power;
+		power = false;
 	}
+	//Выбор напитка и установка уровня сахара и молока на рекомендованые значения по рецепту
 	public void select(String name)
 	{
 		Formula? formula = context.formulas?.FirstOrDefault(f => f.Name.ToLower() == name);
@@ -59,13 +67,14 @@ class CoffeeMachine
 		}
 		CUI();
 	}
+	//Запуск производства напитка
 	public bool enter()
 	{
 		string resp = string.Empty;
 
 		bool success = false;
 
-		Formula? formula = context.formulas.FirstOrDefault(f => f.Name.ToLower() == selectCoffee);
+		Formula? formula = context.formulas.FirstOrDefault(f => f.Name.ToLower() == selectCoffee.ToLower());
 		if (formula != null)
 		{
 
@@ -119,20 +128,23 @@ class CoffeeMachine
 			else resp = "в автомате закончились стаканчики!";
 		}
 		else resp = "для заказа выберите кофе!";
-		Interface.createInfo(resp);
+		setInterfaceInfo(resp);
 		CI();
 		return success;
 	}
+	//регулировка кол-ва сахара
 	public void editSugar(int count)
 	{
 		countSugar = count < 0 ? 0 : count > 5 ? 25 : count * 5;
 		CUI();
 	}
+	//регулировка кол-ва молока
 	public void editMilk(int count)
 	{
 		countMilk = count < 0 ? 0 : count > 5 ? 125 : count * 25;
 		CUI();
 	}
+	//пополнение денег
 	public bool depositMoney(String type, int nominal, int count)
 	{
 		bool success = false;
@@ -149,6 +161,7 @@ class CoffeeMachine
 		CI();
 		return success;
 	}
+	//выдача сдачи
 	public bool change()
 	{
 		bool success = false;
@@ -169,11 +182,12 @@ class CoffeeMachine
 			{
 				resp = "нет мелочи чтобы выдать всю сдачу сдачу!";
 			}
-			Interface.createInfo(resp);
+			setInterfaceInfo(resp);
 			CI();
 		}
 		return success;
 	}
+	//метод расчёта сдачи
 	private int changeCalc(int bank, Money? money, ref string resp)
 	{
 		if (money != null && money.Count > 0 && bank > 0)
@@ -193,6 +207,7 @@ class CoffeeMachine
 		}
 		return bank;
 	}
+	//произведение инкассации (изъятия всех денег из автомата)
 	public bool encashment()
 	{
 		int encashmentCount = 0;
@@ -202,10 +217,11 @@ class CoffeeMachine
 			encashmentCount += money.Count * money.Nominal;
 			money.Count = 0;
 		}
-		Interface.createInfo($"из автомата изъято {encashmentCount}р.");
+		setInterfaceInfo($"из автомата изъято {encashmentCount}р.");
 		CMI();
 		return true;
 	}
+	//пополнение автомата мелочью для выдачи сдачи
 	public bool fillMoney()
 	{
 		List<Money> moneys = context.moneys.Where(m => m.TypeNavigation.Type.ToLower() == "монета").ToList();
@@ -216,6 +232,7 @@ class CoffeeMachine
 		CMI();
 		return true;
 	}
+	//пополнение всех ресурсов на максимальное количество
 	public bool fillAllResources()
 	{
 
@@ -227,6 +244,7 @@ class CoffeeMachine
 		CMI();
 		return true;
 	}
+	//пополнение указаного ресурса на указаное количество
 	public bool fillResource(string name, int count)
 	{
 		bool success = false;
@@ -240,6 +258,7 @@ class CoffeeMachine
 		CMI();
 		return success;
 	}
+	//вывод истории покупок
 	public void history(int count)
 	{
 		string resp = string.Empty;
@@ -250,24 +269,28 @@ class CoffeeMachine
 			Formula? formula = context.formulas.FirstOrDefault(f => f.Id == transaction.Formulas);
 			if (formula != null) resp += $"{transaction.Id}. {transaction.DateTime} {formula.Name} {formula.Price}р. Молоко-{transaction.CountMilk}мл. Сахар-{transaction.CountSugar}гр.\n";
 		}
-		Interface.createInfo(resp);
+		setInterfaceInfo(resp);
 	}
+	//вывод вспомогательной информации
 	public void help()
 	{
 		Interface.createInfo();
 	}
+	//перерисовка пользовательского интерфейса и интерфейса автомата
 	private void CI()
 	{
 		CUI();
 		CMI();
 	}
+	//перерисовка интерфейса пользователя
 	private void CUI()
 	{
 		Interface.createUserInterfaceInfo(bank, countSugar, countMilk, selectCoffee);
 	}
+	//перерисовка интерфейса автомата
 	private void CMI()
 	{
-		Interface.createMachineInterfaceInfo(context);
+		Interface.CreateMachineInterfaceInfo(context);
 	}
 }
 

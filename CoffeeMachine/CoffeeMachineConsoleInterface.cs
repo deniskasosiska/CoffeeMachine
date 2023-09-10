@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
+//класс консольного вывода для автомата - подготавливает информацию к консольному выводу и представляет её
 class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 {
 	private string automatInterfaceInfo = string.Empty;
@@ -41,7 +42,7 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 		userInterfaceInfo += $"  Баланс: {bank}р.  Выбранный кофе:{selectCoffee}\n";
 		userInterfaceInfo += Tabulation.underLine("", 90) + "\n";
 	}
-	public void createMachineInterfaceInfo(ContextCoffeeMachine data)
+	public void CreateMachineInterfaceInfo(ContextCoffeeMachine data)
 	{
 		List<String> strings = new List<String>();
 		strings.Add(Tabulation.whiteSpace("", 40) + "Кофе машина");

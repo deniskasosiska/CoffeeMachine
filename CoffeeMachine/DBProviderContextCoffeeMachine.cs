@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
+
+//Класс для получения данных из модели ORM и сохранений измений через модель
 class DBProviderContextCoffeeMachine
 {
 	public ContextCoffeeMachine DBContext {get;}
