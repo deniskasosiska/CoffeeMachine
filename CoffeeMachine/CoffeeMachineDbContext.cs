@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoffeeMachine;
+namespace appCoffeeMachine;
 
 public partial class CoffeeMachineDbContext : DbContext
 {
@@ -28,7 +28,7 @@ public partial class CoffeeMachineDbContext : DbContext
     public virtual DbSet<UnitResource> UnitResources { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-A79R0GE;Initial Catalog=CoffeeMachineDB;Integrated Security=True; TrustServerCertificate=Yes");
+        => optionsBuilder.UseSqlServer(DATA_SOURCE.STRING_CONNECTION);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

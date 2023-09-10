@@ -5,16 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeMachine;
-class MachineConsoleInput
+namespace appCoffeeMachine;
+class CoffeeMachineConsoleInput
 {
-	private Machine machine;
-	public MachineConsoleInput() {machine = new Machine();}
+	private CoffeeMachine machine;
+	public CoffeeMachineConsoleInput(CoffeeMachine machine) 
+	{
+		this.machine = machine;
+	}
 	public bool getPower() {return machine.getPower();}
 	public string getInterface() {return machine.getInterface();}
-	public void interaction(String interString)
+	public bool interaction(String? interString)
 	{
-		if (!interString.IsNullOrEmpty())
+		bool changingContext = false;
+		if (interString!=null)
 		{
 			machine.setInterfaseHelp(string.Empty);
 			String[] inter = interString.ToLower().Split();
@@ -29,27 +33,28 @@ class MachineConsoleInput
 				case "выбрать":
 					if (inter.Length == 2) machine.select(inter[1]); break;
 				case "заказать":
-					machine.enter(); break;
+					changingContext = machine.enter(); break;
 				case "сахар":
 					if (inter.Length == 2 && int.TryParse(inter[1], out count)) machine.editSugar(count); break;
 				case "молоко":
 					if (inter.Length == 2 && int.TryParse(inter[1], out count)) machine.editMilk(count); break;
 				case "внести":
-					if (inter.Length == 4 && int.TryParse(inter[2], out int nominal) && int.TryParse(inter[3], out count)) machine.depositMoney(inter[1], nominal, count); break;
+					if (inter.Length == 4 && int.TryParse(inter[2], out int nominal) && int.TryParse(inter[3], out count)) 
+						changingContext = machine.depositMoney(inter[1], nominal, count); break;
 				case "сдача":
-					machine.change(); break;
+					changingContext = machine.change(); break;
 				case "инкассация":
-					machine.encashment(); break;
+					changingContext = machine.encashment(); break;
 				case "пополнить":
 					if (inter.Length > 1)
 						switch (inter[1])
 						{
 							case "сдачу":
-								machine.fillMoney(); break;
+								changingContext = machine.fillMoney(); break;
 							case "всё":
-								machine.fillAllResources(); break;
+								changingContext = machine.fillAllResources(); break;
 							default:
-								if (inter.Length == 3 && int.TryParse(inter[2], out count)) machine.fillResource(inter[1], count); break;
+								if (inter.Length == 3 && int.TryParse(inter[2], out count)) changingContext = machine.fillResource(inter[1], count); break;
 						}
 					break;
 				case "история":
@@ -59,5 +64,6 @@ class MachineConsoleInput
 				default: machine.help(); break;
 			}
 		}
+		return changingContext;
 	}
 }

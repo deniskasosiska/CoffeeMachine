@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CoffeeMachine;
+namespace appCoffeeMachine;
 
 public partial class Resource
 {
