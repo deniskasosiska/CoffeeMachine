@@ -154,9 +154,16 @@ class CoffeeMachine
 		money = context.moneys.Where(m => m.Type == context.typeMoneys.FirstOrDefault(t => t.Type.ToLower() == type)?.Id).FirstOrDefault(m => m.Nominal == nominal);
 		if (money != null)
 		{
-			money.Count += count;
-			bank += count * nominal;
-			success = true;
+			if (count * nominal + bank <= 999999)
+			{
+				money.Count += count;
+				bank += count * nominal;
+				success = true;
+			}
+			else
+			{
+				setInterfaceInfo("Нельзя чтобы пополнить баланс больше 999999р.");
+			}
 		}
 		CI();
 		return success;
