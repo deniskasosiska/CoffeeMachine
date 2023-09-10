@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace appCoffeeMachine;
-interface CoffeeMachineInterface
+public interface CoffeeMachineInterface
 {
 	public string getInterfaceInfo();
 	public void createUserInterfaceInfo(int bank, int countSugar, int countMilk, string selectCoffee);

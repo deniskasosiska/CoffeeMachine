@@ -19,9 +19,9 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 	public string getInterfaceInfo()
 	{
 		String resp = automatInterfaceInfo + userInterfaceInfo;
-		resp += helpVisibility ? help + tabulation.underLine("", 90) + "\n" : "";
-		resp += serviceVisibility ? serviceHelp + tabulation.underLine("", 90) + "\n" : "";
-		resp += info != string.Empty ? "Инфо: " + info + "\n" + tabulation.underLine("", 90) + "\n" : "";
+		resp += helpVisibility ? help + Tabulation.underLine("", 90) + "\n" : "";
+		resp += serviceVisibility ? serviceHelp + Tabulation.underLine("", 90) + "\n" : "";
+		resp += info != string.Empty ? "Инфо: " + info + "\n" + Tabulation.underLine("", 90) + "\n" : "";
 		return resp;
 	}
 
@@ -39,15 +39,15 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 			userInterfaceInfo += i < countMilk/25 ? "■" : "_";
 		}
 		userInterfaceInfo += $"  Баланс: {bank}р.  Выбранный кофе:{selectCoffee}\n";
-		userInterfaceInfo += tabulation.underLine("", 90) + "\n";
+		userInterfaceInfo += Tabulation.underLine("", 90) + "\n";
 	}
 	public void createMachineInterfaceInfo(ContextCoffeeMachine data)
 	{
 		List<String> strings = new List<String>();
-		strings.Add(tabulation.whiteSpace("", 40) + "Кофе машина");
-		strings.Add(tabulation.underLine("", 90));
-		strings.Add(tabulation.whiteSpace(tabulation.whiteSpace("Напитки:", 30) + "|Деньги в автомате:", 60) + "|Расходники:");
-		strings.Add(tabulation.underLine("", 90));
+		strings.Add(Tabulation.whiteSpace("", 40) + "Кофе машина");
+		strings.Add(Tabulation.underLine("", 90));
+		strings.Add(Tabulation.whiteSpace(Tabulation.whiteSpace("Напитки:", 30) + "|Деньги в автомате:", 60) + "|Расходники:");
+		strings.Add(Tabulation.underLine("", 90));
 		int? maxCountString = data.resources?.Count >= data.moneys?.Count && data.resources?.Count >= data.formulas?.Count
 		? data.resources.Count
 		: data.moneys?.Count >= data.formulas?.Count
@@ -64,7 +64,7 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 					tmp += $"{f.Id}.{f.Name} - {f.Price}p.";
 				}
 
-				tmp = tabulation.whiteSpace(tmp, 30) + "|"; ;
+				tmp = Tabulation.whiteSpace(tmp, 30) + "|"; ;
 
 				if (i < data.moneys?.Count)
 				{
@@ -72,7 +72,7 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 					tmp += $"{m.Id}.{data.typeMoneys?.Where(t => t.Id == m.Type).Select(t => t.Type).First()} {m.Nominal} - {m.Count}";
 				}
 
-				tmp = tabulation.whiteSpace(tmp, 60) + "|"; ;
+				tmp = Tabulation.whiteSpace(tmp, 60) + "|"; ;
 
 				if (i < data.resources?.Count)
 				{
@@ -82,7 +82,7 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 
 				strings.Add(tmp);
 			}
-		strings.Add(tabulation.underLine("", 90));
+		strings.Add(Tabulation.underLine("", 90));
 
 		automatInterfaceInfo = String.Empty;
 
@@ -106,25 +106,5 @@ class CoffeeMachineConsoleInterface : CoffeeMachineInterface
 	public void switchServiceHelp()
 	{
 		serviceVisibility = !serviceVisibility;
-	}
-}
-
-class tabulation
-{
-	public static String whiteSpace(String str, int count)
-	{
-		return addTabulation(str, count, ' ');
-	}
-	public static String underLine(String str, int count)
-	{
-		return addTabulation(str, count, '_');
-	}
-	public static String addTabulation(String str, int count, char tab)
-	{
-		for (int i = 0 + str.Length; i < count; i++)
-		{
-			str += tab;
-		}
-		return str;
 	}
 }
