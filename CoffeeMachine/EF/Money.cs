@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace appCoffeeMachine;
+namespace appCoffeeMachine.EF;
 
 public partial class Money
 {

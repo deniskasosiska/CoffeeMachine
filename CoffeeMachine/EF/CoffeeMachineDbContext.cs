@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace appCoffeeMachine;
+namespace appCoffeeMachine.EF;
 
 public partial class CoffeeMachineDbContext : DbContext
 {

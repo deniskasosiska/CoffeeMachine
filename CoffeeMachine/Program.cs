@@ -1,11 +1,14 @@
 ﻿using appCoffeeMachine;
+using appCoffeeMachine.model;
+using appCoffeeMachine.model.data;
+using appCoffeeMachine.view.console;
 
 try
 {
-	CoffeeMachineConsoleInterface Interface = new CoffeeMachineConsoleInterface();
-	DBProviderContextCoffeeMachine provider = new DBProviderContextCoffeeMachine();
-	CoffeeMachine machine = new CoffeeMachine(provider.DBContext, Interface);
-	CoffeeMachineConsoleInput coffee = new CoffeeMachineConsoleInput(machine);
+	CoffeeMachineConsoleInterface Interface = CoffeeMachineConsoleInterface.getInstance();
+	DBProviderContextCoffeeMachine provider = DBProviderContextCoffeeMachine.getInstance();
+	CoffeeMachine? machine = CoffeeMachine.getBuilder().setContext(provider.DBContext).setInterface(Interface).build();
+	CoffeeMachineConsoleInput coffee = CoffeeMachineConsoleInput.getInstance(machine);
 	while (coffee.getPower())
 	{
 		Console.Write(coffee.getInterface());
