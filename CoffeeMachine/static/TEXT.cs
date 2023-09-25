@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace appCoffeeMachine;
+﻿namespace appCoffeeMachine;
 static class TEXT
 {
 	public const string INFO = "\nВведите: ?  -чтобы показать/скрыть список команд пользователя\nВведите: s? -чтобы показать/скрыть список сервесных команд";

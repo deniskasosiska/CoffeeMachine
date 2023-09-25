@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using appCoffeeMachine.EF;
+﻿using appCoffeeMachine.EF;
 using appCoffeeMachine.model.data;
 
 namespace appCoffeeMachine.view.console;
@@ -21,10 +15,7 @@ class CoffeeMachineConsoleInterface : ICoffeeMachineInterface
 
     private static CoffeeMachineConsoleInterface instance;
 
-    private CoffeeMachineConsoleInterface()
-    {
-
-    }
+    private CoffeeMachineConsoleInterface(){}
     public static CoffeeMachineConsoleInterface getInstance()
     {
         if (instance == null)
@@ -59,7 +50,7 @@ class CoffeeMachineConsoleInterface : ICoffeeMachineInterface
     public void CreateMachineInterfaceInfo(ContextCoffeeMachine data)
     {
         List<string> strings = new List<string>();
-        strings.Add(Tabulation.whiteSpace("", 40) + "Кофе машина");
+        strings.Add(Tabulation.whiteSpace("", 40) + "Кофемашина");
         strings.Add(Tabulation.underLine("", 90));
         strings.Add(Tabulation.whiteSpace(Tabulation.whiteSpace("Напитки:", 30) + "|Деньги в автомате:", 60) + "|Расходники:");
         strings.Add(Tabulation.underLine("", 90));

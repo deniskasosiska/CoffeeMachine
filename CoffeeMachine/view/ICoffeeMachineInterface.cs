@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using appCoffeeMachine.model.data;
+﻿using appCoffeeMachine.model.data;
 
 namespace appCoffeeMachine.view;
 //интерфейс классов вывода для нашего автомата

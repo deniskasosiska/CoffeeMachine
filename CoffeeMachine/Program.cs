@@ -5,6 +5,7 @@ using appCoffeeMachine.view.console;
 
 try
 {
+	Console.Title = "Кофемашина";
 	CoffeeMachineConsoleInterface Interface = CoffeeMachineConsoleInterface.getInstance();
 	DBProviderContextCoffeeMachine provider = DBProviderContextCoffeeMachine.getInstance();
 	CoffeeMachine? machine = CoffeeMachine.getBuilder().setContext(provider.DBContext).setInterface(Interface).build();
@@ -18,4 +19,5 @@ try
 }catch(Exception ex)
 {
 	Console.Write($"{TEXT.ERROR_ADMINISTRATOR}\n\n{ex.Message}\n\n{ex.TargetSite}\n\n{ex.StackTrace}");
+	Console.ReadKey();
 }

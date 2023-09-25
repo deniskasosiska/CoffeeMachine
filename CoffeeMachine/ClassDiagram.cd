@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="appCoffeeMachine.model.data.ContextCoffeeMachine">
+    <Position X="13" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAIAAAACAAAAAAAAAAAIAAAAAAAAAAAAAAkAA=</HashCode>
+      <FileName>model\data\ContextCoffeeMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.model.data.DBProviderContextCoffeeMachine">
+    <Position X="12.5" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAABEAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>model\data\DBProviderContextCoffeeMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="instance" />
+      <Property Name="DBContext" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.model.BuilderCoffeeMachine">
+    <Position X="7.25" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAACAABAAAAAAAAAAAAAAIAAAAAEAAA=</HashCode>
+      <FileName>model\BuilderCoffeeMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="context" />
+      <Field Name="Interface" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.model.CoffeeMachine">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiA2kAAAAAAAAAAEBAAAgA0AkiQABABCEBAAQAAkA=</HashCode>
+      <FileName>model\CoffeeMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="context" />
+      <Field Name="Interface" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.view.console.CoffeeMachineConsoleInput">
+    <Position X="7.75" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABABAAAAABAAAQAAAEAAAAAEAA=</HashCode>
+      <FileName>view\console\CoffeeMachineConsoleInput.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="instance" />
+      <Field Name="machine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.view.console.CoffeeMachineConsoleInterface" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkgAAAgABAAAAAEAQAAAAABQCARAQAAAEAAAAEA=</HashCode>
+      <FileName>view\console\CoffeeMachineConsoleInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="instance" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Bottom" Position="1.848" />
+  </Class>
+  <Class Name="appCoffeeMachine.Tabulation">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAE=</HashCode>
+      <FileName>view\console\Tabulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.Formula">
+    <Position X="19" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAQAAAAAAAAAAAAQIAIAgAAAAAAAAAAABAAA=</HashCode>
+      <FileName>EF\Formula.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.DATA_SOURCE">
+    <Position X="19.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>static\DATA_SOURCE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.TEXT">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEAAAAAAAEAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>static\TEXT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.EF.CoffeeMachineDbContext">
+    <Position X="15.75" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACwAAAAKQAQAAAAAAAAAAAAEAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>EF\CoffeeMachineDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.EF.Money">
+    <Position X="19.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAgA=</HashCode>
+      <FileName>EF\Money.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TypeNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.EF.Resource">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAAAAAAAIAAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EF\Resource.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UnitNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.EF.Transaction">
+    <Position X="15.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAiAAAAAAAAAAAQAAAAAAAAAAAAABQAAAAAAAAAAAA=</HashCode>
+      <FileName>EF\Transaction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FormulasNavigation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="appCoffeeMachine.EF.TypeMoney">
+    <Position X="22.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>EF\TypeMoney.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="appCoffeeMachine.EF.UnitResource">
+    <Position X="19" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EF\UnitResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="appCoffeeMachine.view.ICoffeeMachineInterface">
+    <Position X="4.25" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAABAAAAAEAQAAAAAAACAAAAAAAAAAAAEA=</HashCode>
+      <FileName>view\ICoffeeMachineInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,14 +1,6 @@
 ﻿using appCoffeeMachine.EF;
 using appCoffeeMachine.model.data;
 using appCoffeeMachine.view;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace appCoffeeMachine.model;
 
@@ -116,7 +108,11 @@ class CoffeeMachine
                                         bank -= formula.Price;
                                         selectCoffee = string.Empty;
 
-                                        Transaction transaction = new Transaction() { DateTime = DateTime.Now, Formulas = formula.Id, CountMilk = countMilk * 25, CountSugar = countSugar * 5 };
+                                        Transaction transaction = new Transaction() { 
+                                            DateTime = DateTime.Now,
+                                            Formulas = formula.Id, 
+                                            CountMilk = countMilk * 25, 
+                                            CountSugar = countSugar * 5 };
                                         context.transactions.Add(transaction);
                                         resp = $" Ваш {formula.Name} готов!";
                                         success = true;
@@ -159,7 +155,8 @@ class CoffeeMachine
         count = count < 0 ? 0 : count;
         Money? money;
 
-        money = context.moneys.Where(m => m.Type == context.typeMoneys.FirstOrDefault(t => t.Type.ToLower() == type)?.Id).FirstOrDefault(m => m.Nominal == nominal);
+        money = context.moneys.Where(m => m.Type == context.typeMoneys.FirstOrDefault(
+            t => t.Type.ToLower() == type)?.Id).FirstOrDefault(m => m.Nominal == nominal);
         if (money != null)
         {
             if (count * nominal + bank <= 999999)
@@ -188,39 +185,20 @@ class CoffeeMachine
             Money? money5 = moneys.FirstOrDefault(m => m.Nominal == 5);
             Money? money2 = moneys.FirstOrDefault(m => m.Nominal == 2);
             Money? money1 = moneys.FirstOrDefault(m => m.Nominal == 1);
-            if (changeCalc(changeCalc(changeCalc(changeCalc(bank, money10, ref resp), money5, ref resp), money2, ref resp), money1, ref resp) == 0)
+            if (changeCalc(changeCalc(changeCalc(changeCalc(bank, money10, ref resp), money5, ref resp)
+                , money2, ref resp), money1, ref resp) == 0)
             {
                 bank = 0;
                 success = true;
             }
             else
             {
-                resp = "нет мелочи чтобы выдать всю сдачу сдачу!";
+                resp = "нет мелочи чтобы выдать всю сдачу!";
             }
             setInterfaceInfo(resp);
             CI();
         }
         return success;
-    }
-    //метод расчёта сдачи
-    private int changeCalc(int bank, Money? money, ref string resp)
-    {
-        if (money != null && money.Count > 0 && bank > 0)
-        {
-            if (bank / money.Nominal > money.Count)
-            {
-                resp += $"монета {money.Nominal} - {money.Count}шт. ";
-                bank -= money.Nominal * money.Count;
-                money.Count = 0;
-            }
-            else
-            {
-                resp += $"монета {money.Nominal} - {bank / money.Nominal}шт. ";
-                money.Count -= bank / money.Nominal;
-                bank = bank % money.Nominal;
-            }
-        }
-        return bank;
     }
     //произведение инкассации (изъятия всех денег из автомата)
     public bool encashment()
@@ -282,7 +260,8 @@ class CoffeeMachine
         foreach (Transaction transaction in transactions)
         {
             Formula? formula = context.formulas.FirstOrDefault(f => f.Id == transaction.Formulas);
-            if (formula != null) resp += $"{transaction.Id}. {transaction.DateTime} {formula.Name} {formula.Price}р. Молоко-{transaction.CountMilk}мл. Сахар-{transaction.CountSugar}гр.\n";
+            if (formula != null) resp += $"{transaction.Id}. {transaction.DateTime} {formula.Name} {formula.Price}р. " +
+                    $"Молоко-{transaction.CountMilk}мл. Сахар-{transaction.CountSugar}гр.\n";
         }
         setInterfaceInfo(resp);
     }
@@ -291,8 +270,28 @@ class CoffeeMachine
     {
         Interface.createInfo();
     }
-    //перерисовка пользовательского интерфейса и интерфейса автомата
-    private void CI()
+	//метод расчёта сдачи
+	private int changeCalc(int bank, Money? money, ref string resp)
+	{
+		if (money != null && money.Count > 0 && bank > 0)
+		{
+			if (bank / money.Nominal > money.Count)
+			{
+				resp += $"монета {money.Nominal} - {money.Count}шт. ";
+				bank -= money.Nominal * money.Count;
+				money.Count = 0;
+			}
+			else
+			{
+				resp += $"монета {money.Nominal} - {bank / money.Nominal}шт. ";
+				money.Count -= bank / money.Nominal;
+				bank = bank % money.Nominal;
+			}
+		}
+		return bank;
+	}
+	//перерисовка пользовательского интерфейса и интерфейса автомата
+	private void CI()
     {
         CUI();
         CMI();

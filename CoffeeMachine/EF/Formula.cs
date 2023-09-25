@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using appCoffeeMachine.EF;
+﻿using appCoffeeMachine.EF;
 
 namespace appCoffeeMachine;
 

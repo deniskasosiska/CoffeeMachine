@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using appCoffeeMachine.EF;
+﻿using appCoffeeMachine.EF;
 
 namespace appCoffeeMachine.model.data;
 //класс для хранения данных из модели

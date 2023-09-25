@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace appCoffeeMachine.EF;
 
@@ -53,12 +51,12 @@ public partial class CoffeeMachineDbContext : DbContext
             entity.Property(e => e.Type).HasColumnName("type");
 
             entity.HasOne(d => d.TypeNavigation).WithMany(p => p.Money)
-                .HasForeignKey(d => d.Type)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Money_TypeMoney");
+			   .HasForeignKey(d => d.Type)
+			   .OnDelete(DeleteBehavior.ClientSetNull)
+			   .HasConstraintName("FK_Money_TypeMoney");
         });
 
-        modelBuilder.Entity<Resource>(entity =>
+		modelBuilder.Entity<Resource>(entity =>
         {
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Count).HasColumnName("count");

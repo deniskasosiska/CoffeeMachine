@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace appCoffeeMachine.EF;
+﻿namespace appCoffeeMachine.EF;
 
 public partial class Resource
 {
